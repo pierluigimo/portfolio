@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierluigi Monaco - Executive Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* CORE SETUP */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a1a;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
+    margin: 0;
+    min-height: 100vh;
+    padding: 50px 0;
+    place-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* SLIDE CONTAINER - 1280x720 Fixed Aspect Ratio */
+.slide-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    height: 720px;
+    justify-content: center;
+    overflow: hidden;
+    /* RIDOTTO IL PADDING VERTICALE PER EVITARE TRUNCAMENTI */
+    padding: 40px 70px; 
+    position: relative;
+    width: 1280px;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+/* OVERLAYS */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.overlay-navy {
+    background: linear-gradient(135deg, rgba(0, 33, 71, 0.95) 0%, rgba(0, 10, 30, 0.85) 100%);
+}
+
+.overlay-light {
+    background: linear-gradient(135deg, rgba(245, 247, 250, 0.97) 0%, rgba(255, 255, 255, 0.92) 100%);
+}
+
+.slide-content-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* TYPOGRAPHY */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+h2.slide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px; /* Ridotto leggermente per sicurezza */
+    font-weight: 700;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: left;
+    color: #002147;
+    position: relative;
+    padding-bottom: 15px; /* Ridotto padding */
+}
+
+h2.slide-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background-color: #c5a059;
+}
+
+h2.slide-subtitle {
+    font-size: 22px; /* Ridotto leggermente */
+    font-weight: 300;
+    color: #555;
+    margin-bottom: 30px; /* Ridotto margine per guadagnare spazio */
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.text-gold {
+    color: #c5a059;
+}
+
+/* LAYOUTS */
+
+/* 1. COVER SLIDE */
+#slide1 {
+    background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+}
+
+.title-slide-content {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 60px;
+    background: rgba(0, 33, 71, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+.title-slide-content .subtitle {
+    font-size: 28px;
+    color: #e0e0e0;
+    font-weight: 300;
+    margin-bottom: 60px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 30px;
+    display: inline-block;
+}
+
+.title-footer {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    font-size: 18px;
+    color: #c5a059;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.title-footer a {
+    color: #c5a059;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+.title-footer a:hover {
+    border-bottom: 1px solid #c5a059;
+}
+
+/* 2. CASE STUDY SLIDES (Light Theme) */
+.case-study-slide {
+    background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    color: #333;
+}
+
+.three-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 25px;
+    width: 100%;
+    align-items: stretch;
+    height: auto; /* Rimosso fixed height per evitare overflow rigido, ora si adatta */
+    min-height: 400px; /* Altezza minima per uniformità */
+}
+
+.column-tile {
+    background-color: #ffffff;
+    /* RIDOTTO IL PADDING INTERNO PER EVITARE TRUNCAMENTI */
+    padding: 25px 25px; 
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-left: 4px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.column-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.column-tile.challenge { border-left-color: #d9534f; }
+.column-tile.action { border-left-color: #002147; }
+.column-tile.results { border-left-color: #28a745; background-color: #fcfcfc; }
+
+.tile-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px; /* Ridotto spazio sotto header */
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tile-header i {
+    font-size: 20px; /* Leggermente più piccolo */
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f6f8;
+    border-radius: 50%;
+    color: #002147;
+}
+
+.column-tile.results .tile-header i { color: #28a745; background-color: #e8f5e9; }
+.column-tile.challenge .tile-header i { color: #d9534f; background-color: #fdedec; }
+
+.tile-header h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #333;
+}
+
+.tile-content { font-size: 15px; line-height: 1.6; color: #555; } /* Font leggermente ottimizzato */
+.tile-content ul { list-style: none; padding: 0; margin: 0; }
+.tile-content li { margin-bottom: 10px; position: relative; padding-left: 18px; }
+.tile-content li::before {
+    content: "•";
+    color: #c5a059;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+.column-tile.results .tile-content li::before { content: "↑"; color: #28a745; }
+
+/* 3. CLOSING SLIDE */
+#slide5 {
+    background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+}
+
+.closing-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px; /* Ridotto gap */
+    align-items: center;
+    width: 100%;
+}
+
+.closing-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 58px; /* Ridotto leggermente per evitare overflow */
+    color: #ffffff;
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+.closing-quote {
+    font-size: 24px;
+    line-height: 1.5;
+    color: #e0e0e0;
+    border-left: 4px solid #c5a059;
+    padding-left: 25px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    /* RIDOTTO PADDING CARD CONTATTI */
+    padding: 30px; 
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    font-size: 18px;
+    margin-bottom: 20px; /* Spaziatura ottimizzata */
+    color: #ffffff;
+}
+
+.contact-item:last-child { margin-bottom: 0; }
+
+.contact-item i {
+    color: #c5a059;
+    font-size: 20px;
+    width: 25px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.contact-item a {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    transition: 0.3s;
+}
+
+.contact-item a:hover {
+    border-color: #c5a059;
+    color: #c5a059;
+}
+
+/* Signature Styling */
+.signature-img {
+    height: 60px;
+    display: block;
+    margin-top: 5px;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+}
+
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Cover -->
+<div class="slide-container" id="slide1">
+    <div class="overlay overlay-navy"></div>
+    <div class="slide-content-wrapper">
+        <div class="title-slide-content">
+            <h1>Strategic Finance &<br><span class="text-gold">Revenue Operations</span></h1>
+            <p class="subtitle">Selected Case Studies: Driving Growth, Efficiency, and Governance</p>
+            <div class="title-footer">
+                <span><i class="fa-solid fa-user"></i> Pierluigi Monaco</span>
+                <span><i class="fa-solid fa-location-dot"></i> Milan, Italy</span>
+                <span><a href="https://www.linkedin.com/in/pierluigimonaco/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 2: Case Study #1 (Strategy) -->
+<div class="slide-container case-study-slide" id="slide2">
+    <div class="overlay overlay-light"></div>
+    <div class="slide-content-wrapper">
+        <h2 class="slide-title">Business Model Transformation</h2>
+        <h2 class="slide-subtitle">Strategy: License to Subscription</h2>
+        
+        <div class="three-column-grid">
+            <!-- Col 1 -->
+            <div class="column-tile challenge">
+                <div class="tile-header">
+                    <i class="fa-solid fa-mountain"></i>
+                    <h3>The Challenge</h3>
+                </div>
+                <div class="tile-content">
+                    <p>Transitioning a legacy customer base from perpetual licensing to a recurring Cloud/Subscription model (SaaS) without eroding short-term revenue or increasing churn on a <strong>$58M portfolio</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="column-tile action">
+                <div class="tile-header">
+                    <i class="fa-solid fa-chess-knight"></i>
+                    <h3>My Action</h3>
+                </div>
+                <div class="tile-content">
+                    <ul>
+                        <li><strong>Governance Architect:</strong> Designed financial framework & P&L models for subscription shift (ARR/MRR).</li>
+                        <li><strong>Deal Structuring:</strong> Created scenario-based analysis shifting focus to Total Contract Value (TCV).</li>
+                        <li><strong>Negotiation:</strong> Partnered with Sales to close <strong>$4M+</strong> in strategic cloud contracts.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Col 3 -->
+            <div class="column-tile results">
+                <div class="tile-header">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h3>The Results</h3>
+                </div>
+                <div class="tile-content">
+                    <ul>
+                        <li><strong>+$6.9M</strong> in new corporate subscription business.</li>
+                        <li><strong>Churn Reduced:</strong> Dropped contract loss rate from 20% to 10%.</li>
+                        <li><strong>Value Increase:</strong> Achieved 15% higher average contract value.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: Case Study #2 (Operations) -->
+<div class="slide-container case-study-slide" id="slide3">
+    <div class="overlay overlay-light"></div>
+    <div class="slide-content-wrapper">
+        <h2 class="slide-title">Operational Excellence & AI</h2>
+        <h2 class="slide-subtitle">Operations: Cost & Productivity</h2>
+        
+        <div class="three-column-grid">
+            <!-- Col 1 -->
+            <div class="column-tile challenge">
+                <div class="tile-header">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3>The Challenge</h3>
+                </div>
+                <div class="tile-content">
+                    <p>Managing a complex cost structure of <strong>$95M</strong> across three regions while facing pressure to increase commercial bid volume and speed without adding headcount.</p>
+                </div>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="column-tile action">
+                <div class="tile-header">
+                    <i class="fa-solid fa-robot"></i>
+                    <h3>My Action</h3>
+                </div>
+                <div class="tile-content">
+                    <ul>
+                        <li><strong>AI Implementation:</strong> Launched AI tools for bid management to automate low-value tasks.</li>
+                        <li><strong>Process Harmonization:</strong> Centralized <strong>$9M</strong> in rebate/MDF processes across EMEA & LATAM.</li>
+                        <li><strong>Cost Control:</strong> Implemented strict resource allocation strategies.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Col 3 -->
+            <div class="column-tile results">
+                <div class="tile-header">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h3>The Results</h3>
+                </div>
+                <div class="tile-content">
+                    <ul>
+                        <li><strong>Productivity:</strong> Delivered a 5% productivity uplift for commercial teams.</li>
+                        <li><strong>Cost Savings:</strong> Achieved a 15% OPEX reduction via streamlining.</li>
+                        <li><strong>Accuracy:</strong> Improved budget forecast accuracy by 20%.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Case Study #3 (Risk) -->
+<div class="slide-container case-study-slide" id="slide4">
+    <div class="overlay overlay-light"></div>
+    <div class="slide-content-wrapper">
+        <h2 class="slide-title">Risk Management</h2>
+        <h2 class="slide-subtitle">Resilience: Volatile Markets (Turkey)</h2>
+        
+        <div class="three-column-grid">
+            <!-- Col 1 -->
+            <div class="column-tile challenge">
+                <div class="tile-header">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <h3>The Challenge</h3>
+                </div>
+                <div class="tile-content">
+                    <p>Operating a subsidiary in a hyper-inflationary environment with massive currency devaluation, creating critical FX exposure on <strong>$35M+</strong> of annual revenue.</p>
+                </div>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="column-tile action">
+                <div class="tile-header">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>My Action</h3>
+                </div>
+                <div class="tile-content">
+                    <ul>
+                        <li><strong>Strategic Conversion:</strong> Led project to change functional currency from Lira to USD.</li>
+                        <li><strong>Commercial Renegotiation:</strong> Managed high-stakes renegotiations with clients like Turkcell.</li>
+                        <li><strong>Compliance:</strong> Ensured full alignment with US GAAP/IFRS during transition.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Col 3 -->
+            <div class="column-tile results">
+                <div class="tile-header">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <h3>The Results</h3>
+                </div>
+                <div class="tile-content">
+                    <ul>
+                        <li><strong>Risk Neutralized:</strong> Completely eliminated FX exposure.</li>
+                        <li><strong>100% Compliance:</strong> Passed all audits with zero issues.</li>
+                        <li><strong>Stability:</strong> Maintained retention during critical transition.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Closing -->
+<div class="slide-container" id="slide5">
+    <div class="overlay overlay-navy"></div>
+    <div class="slide-content-wrapper">
+        <div class="closing-layout">
+            <div class="closing-text">
+                <h2>Ready to Scale<br><span class="text-gold">Dojo in Italy</span></h2>
+                <div class="closing-quote">
+                    "Combining strategic foresight with operational grit to bridge the gap between aggressive commercial growth and financial governance."
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-item">
+                    <i class="fa-solid fa-user"></i> 
+                    <div>
+                        <strong>Pierluigi Monaco</strong>
+                        <img src="signature.png" alt="Pierluigi Monaco Signature" class="signature-img" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i> +39 348 8513668
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i> pierluigimonaco2@gmail.com
+                </div>
+                <div class="contact-item">
+                    <i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/pierluigimonaco/" target="_blank">linkedin.com/in/pierluigimonaco</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
